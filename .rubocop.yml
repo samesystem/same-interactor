@@ -1,0 +1,47 @@
+require:
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - bin/*
+    - same-interactor.gemspec
+    - Rakefile
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
+
+Metrics/ClassLength:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Layout/LineLength:
+  Enabled: true
+  Max: 120
+
+Metrics/ModuleLength:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Naming/MethodParameterName:
+  AllowedNames:
+    - 'to'
+    - 'at'
+    - 'on'
+    - 'id'
+    - 'in'
+    - 'as'
+
+RSpec/NestedGroups:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - spec/**/*_spec.rb
+
