@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'same-interactor'
   spec.version       = Same::Interactor::VERSION
   spec.authors       = ['Jokūbas Pučinskas']
-  spec.email         = ['jokubas.pucinskas@samesystem.com', 'po.jurcys@gmail.com']
+  spec.email         = ['maillerpucinskas@gmail.com', 'po.jurcys@gmail.com']
 
   spec.summary       = 'Interactor on steroids.'
   spec.description   = 'Improved interactor with validations and mandatory arguments.'
