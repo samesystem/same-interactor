@@ -30,12 +30,12 @@
 
     window.$docsify = {
       auto2top: true,
-      name: 'GraphqlRails',
-      repo: 'https://github.com/samesystem/graphql_rails',
+      name: 'Same::Interactor',
+      repo: 'https://github.com/samesystem/same-interactor',
       subMaxLevel: 3,
       loadSidebar: true,
       formatUpdated: '{MM}/{DD} {HH}:{mm}',
-      branchBasePath: 'https://raw.githubusercontent.com/samesystem/graphql_rails/',
+      branchBasePath: 'https://raw.githubusercontent.com/samesystem/same-interactor/',
       plugins: [
         function (hook, vm) { // reasign any config value by param attribute
           Object.assign(window.$docsify, getJsonFromUrl());
@@ -54,7 +54,7 @@
         function (hook, vm) { // add edit page link
           hook.beforeEach(function (html) {
             var branch = window.$docsify.branch || 'master'
-            var url = 'https://github.com/samesystem/graphql_rails/edit/' + branch + '/docs/' + vm.route.file
+            var url = 'https://github.com/samesystem/same-interactor/edit/' + branch + '/docs/' + vm.route.file
             var editHtml = '[:memo: Edit Document](' + url + ')\n'
             return html
               + '\n\n----\n\n'

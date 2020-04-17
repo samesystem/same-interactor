@@ -32,11 +32,10 @@ module Same
         def define_field_methods(fields, default:)
           fields.each do |field|
             define_method field do
-              if context.to_h.include?(field.to_sym) || default == NOT_SET
-                context.public_send(field)
-              else
-                default
-              end
+              @context_attribute_value ||= {}
+              return @context_attribute_value[field] if @context_attribute_value.key?(field)
+
+              @context_attribute_value[field] = fetch_context_method_value(field, default)
             end
           end
         end
@@ -44,6 +43,16 @@ module Same
 
       included do
         before :assert_context_attributes
+      end
+
+      def fetch_context_method_value(field, default)
+        if context.to_h.include?(field.to_sym) || default == NOT_SET
+          context.public_send(field)
+        elsif default.is_a?(Proc)
+          instance_exec(&default)
+        else
+          default
+        end
       end
 
       def assert_context_attributes

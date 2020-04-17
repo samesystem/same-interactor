@@ -95,8 +95,9 @@ module Same
         let(:default_value) { -1 }
 
         let(:application_interactor) do
+          default = default_value
           Class.new(interactor_with_required_attributes) do
-            context_attr :amount, default: -1
+            context_attr :amount, default: default
 
             def self.name
               'DummyWithDefaultsInteractor'
@@ -127,6 +128,20 @@ module Same
 
           it 'sets default value' do
             expect(call.received_amount).to eq default_value
+          end
+
+          context 'when default value is lambda' do
+            let(:default_value) do
+              -> { "default: #{self.class.name}" }
+            end
+
+            it 'executes call part' do
+              expect(call.is_called).to be true
+            end
+
+            it 'executes given lambda in interactor context' do
+              expect(call.received_amount).to eq 'default: DummyWithDefaultsInteractor'
+            end
           end
         end
       end
